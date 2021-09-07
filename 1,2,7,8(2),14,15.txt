@@ -1,0 +1,279 @@
+1.a  Operator precedence // save as Precedence.java
+
+class Precedence {
+ public static void main(String[] args) {
+ System.out.println( 3 + 3 * 2 );
+ System.out.println( 3 * 3 - 2 );
+ System.out.println( 3 * 3 / 2 );
+ System.out.println("--");
+ System.out.println( 1 * 1 + 1 * 1);
+ System.out.println( 1 + 1 / 1 - 1);
+ System.out.println( 3 * 3 / 2 + 2);
+ System.out.println("--");
+ int x = 1;
+ System.out.println( x++ + x++ * --x );
+ x = 1;
+ System.out.println( x << 1 * 2 >> 1);
+ x = 0xf;
+ System.out.println( 0xf & 0x5 | 0xa );
+ }
+}
+
+
+
+1.b  package concept  // save as Scope 
+
+class Scope {
+ public static void main(String args[])
+ {
+ int n1; // Visible in main
+ n1 = 10;
+ if(n1 == 10)
+ {
+ // start new scope
+ int n2 = 20; // visible only to this block
+ // num1 and num2 both visible here.
+ System.out.println("n1 and n2 : "+ n1 +""+ n2);
+ }
+ // n2 = 100; // Error! y not known here
+ // n1 is still visible here.
+ System.out.println("n1 is " + n1); } }
+
+
+
+1.c  Variable Scope in Java Programming  // save as A.java
+
+package pack;
+ public class A{
+ public void msg(){System.out.println("Hello");}
+}
+save by B.java
+ package mypack;
+ import pack.A; 
+
+ class B{
+ public static void main(String args[]){
+ A obj = new A();
+ obj.msg();
+ }
+ }
+
+
+
+2.a  Java program on use of inheritance  // save as A.java
+
+abstract class A
+{
+abstract void callme();
+}
+class B extends A
+{
+void callme()
+{
+ System.out.println("this is callme.");
+}
+public static void main(String[] args)
+{
+ B b = new B();
+ b.callme();
+}
+}
+
+
+
+2.b  Preventing inheritance using final  // save as DataV1.java
+
+final class DataV1 {
+
+
+}
+class DataV2 extends DataV1{
+
+
+}
+public class Javaapp {
+
+ public static void main(String[] args){
+
+ DataV2 obj = new DataV2();
+ }
+}
+
+
+
+2.c  Abstract classes  //save as Parent.java
+class Parent
+{
+ public void p1()
+ {
+ System.out.println("Parent method");
+ }
+}
+public class Child extends Parent {
+ public void c1()
+ {
+ System.out.println("Child method");
+ }
+ public static void main(String[] args)
+ {
+ Child cobj = new Child();
+ cobj.c1(); //method of Child class
+ cobj.p1(); //method of Parent class
+ }
+}
+
+
+
+7. Write java program that inputs 5 numbers, each between 10 and 100 inclusive  // save as sid.java
+
+import java.util.*; 
+class sid{
+public static void main(String[] args) {
+ Scanner input = new Scanner(System.in);
+ int sid[] = new int[5];
+ int count = 0;
+ int x = 0;
+ int num = 0;
+ while (x < sid.length)
+ {
+ System.out.println("Enter number: ");
+ num = input.nextInt();
+ if ((num >= 10) && (num <= 100)) {
+ boolean digit = false;
+ x++;
+ for (int i = 0; i < sid.length; i++)
+ { if (sid[i] == num)
+ digit = true;
+ }
+ if (!digit) {
+ sid[count] = num;
+ count++;
+ }
+ else
+ System.out.printf("the number was entered before \n");
+ }
+ else
+ System.out.println("number must be between 10 and 100");
+ for (int i =0; i < x; i++) {
+ System.out.print(sid[i] +" ");
+ }
+ System.out.println();
+ }
+ }
+ }
+
+
+
+8.a  Creating a thread using Extending Thread class // save as MyThread.java
+
+class MyThread extends Thread
+{
+ public void run()
+ {
+  System.out.println("Concurrent thread started running..");
+ }
+}
+
+class MyThreadDemo
+{
+ public static void main( String args[] )
+ {
+  MyThread mt = new  MyThread();
+  mt.start();
+ }
+} 
+
+
+
+8.b  // save as TestMultiPriority1.java
+
+class TestMultiPriority1 extends Thread{  
+ public void run(){  
+   System.out.println("running thread name is:"+Thread.currentThread().getName());  
+   System.out.println("running thread priority is:"+Thread.currentThread().getPriority());  
+  
+  }  
+ public static void main(String args[]){  
+  TestMultiPriority1 m1=new TestMultiPriority1();  
+  TestMultiPriority1 m2=new TestMultiPriority1();  
+   m1.setPriority(Thread.MIN_PRIORITY);  
+   m2.setPriority(Thread.MAX_PRIORITY);  
+   m1.start();  
+   m2.start();  
+    
+  }  
+ }      
+
+
+14. Write a java program to handle mouse events // save as MouseListenerExample.java
+
+import java.awt.*;  
+import java.awt.event.*;  
+public class MouseListenerExample extends Frame implements MouseListener{  
+    Label l;  
+    MouseListenerExample(){  
+        addMouseListener(this);  
+          
+        l=new Label();  
+        l.setBounds(20,50,100,20);  
+        add(l);  
+        setSize(300,300);  
+        setLayout(null);  
+        setVisible(true);  
+    }  
+    public void mouseClicked(MouseEvent e) {  
+        l.setText("Mouse Clicked");  
+    }  
+    public void mouseEntered(MouseEvent e) {  
+        l.setText("Mouse Entered");  
+    }  
+    public void mouseExited(MouseEvent e) {  
+        l.setText("Mouse Exited");  
+    }  
+    public void mousePressed(MouseEvent e) {  
+        l.setText("Mouse Pressed");  
+    }  
+    public void mouseReleased(MouseEvent e) {  
+        l.setText("Mouse Released");  
+    }  
+public static void main(String[] args) {  
+    new MouseListenerExample();  
+}  
+}
+
+
+
+15 Write a Java Program to demonstrate Mouse events // save as KeyListenerExample.java
+
+import java.awt.*; 
+import java.awt.event.*;  
+public class KeyListenerExample extends Frame implements KeyListener{  
+    Label l;  
+    TextArea area;  
+    KeyListenerExample(){  
+          
+        l=new Label();  
+        l.setBounds(20,50,100,20);  
+        area=new TextArea();  
+        area.setBounds(20,80,300, 300);  
+        area.addKeyListener(this);  
+          
+        add(l);add(area);  
+        setSize(400,400);  
+        setLayout(null);  
+        setVisible(true);  
+    }  
+    public void keyPressed(KeyEvent e) {  
+        l.setText("Key Pressed");  
+    }  
+    public void keyReleased(KeyEvent e) {  
+        l.setText("Key Released");  
+    }  
+    public void keyTyped(KeyEvent e) {  
+        l.setText("Key Typed");  
+    }  
+  
+    public static void main(String[] args) {  
+        new KeyListenerExample();  
+    } 
+}
